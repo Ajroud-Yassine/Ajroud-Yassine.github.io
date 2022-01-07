@@ -82,10 +82,10 @@ let gamma =document.getElementById('gamma');
 
 window.addEventListener('devicemotion', (eventData) => {
 
-    x.innerHTML =eventData.accelerationIncludingGravity.x
-    y.innerHTML =eventData.accelerationIncludingGravity.Y
-    z.innerHTML =eventData.accelerationIncludingGravity.Z
-    alpha.innerHTML = eventData.rotationRate.alpha
-    beta.innerHTML = eventData.rotationRate.beta
-    gamma.innerHTML = eventData.rotationRate.gamma
+    x.innerHTML = Math.round(eventData.accelerationIncludingGravity.x);
+    y.innerHTML = Math.round(eventData.accelerationIncludingGravity.Y);
+    z.innerHTML = Math.round(eventData.accelerationIncludingGravity.Z);
+    alpha.innerHTML = Math.round(eventData.rotationRate.alpha) ;
+    beta.innerHTML = Math.round(eventData.rotationRate.beta); 
+    gamma.innerHTML = Math.round(eventData.rotationRate.gamma);
 }, false);
