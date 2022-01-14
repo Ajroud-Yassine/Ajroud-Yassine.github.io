@@ -9,28 +9,32 @@ var options = {
   };
 
 function success(pos) {
-    // calcul distance Nice Marseille
-    
-    // return distance in meters
-    var lon1 = toRadian(43.70313),
-    lat1 = toRadian(7.26608),
-    lon2 = toRadian(43.296482),
-    lat2 = toRadian(5.36978);
 
-    var deltaLat = lat2 - lat1;
-    var deltaLon = lon2 - lon1;
+   // calcul distance Nice Marseille
+   var R = 6371e3;
+   var lat1 = 43.7101728;
+   var lat2 = 43.299999; 
+   var lon1 = 7.2619532; 
+   var lon2 = 5.4;       
+   var lat1radians = toRadians(lat1);
+   var lat2radians = toRadians(lat2);
+   var latRadians = toRadians(lat2-lat1);
+   var lonRadians = toRadians(lon2-lon1);
+   var a = Math.sin(latRadians/2) * Math.sin(latRadians/2) +
+        Math.cos(lat1radians) * Math.cos(lat2radians) *
+        Math.sin(lonRadians/2) * Math.sin(lonRadians/2);
+   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+   var distanceMetres = R * c;
 
-    var a = Math.pow(Math.sin(deltaLat/2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(deltaLon/2), 2);
-    var c = 2 * Math.asin(Math.sqrt(a));
-    var EARTH_RADIUS = 6371;
-    var distanceMetres = c * EARTH_RADIUS * 1000;
-
+   function toRadians(val){
+    var PI = 3.1415926535;
+    return val / 180.0 * PI;
+}
 
 
 // 
     var map = L.map('map').setView([51, -0.09], 5);
     var dist = document.getElementById("dist");
-    var distNiceMars = 'as';
     
 
     L.tileLayer('https://stamen-tiles.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg', {
@@ -85,8 +89,8 @@ function success(pos) {
         color: 'yellow'
     }).addTo(map);
 
-    segment.bindPopup("Distance Nice > Marseille = "+distanceMetres+" mètres");
-    dist.innerHTML = distanceMetres
+    segment.bindPopup("Distance Nice > Marseille = "+Math.round(distanceMetres/1000)+" mètres");
+    dist.innerHTML = Math.round(distanceMetres/1000);
 
 
 
