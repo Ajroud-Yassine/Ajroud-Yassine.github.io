@@ -21,8 +21,14 @@ function success(pos) {
     var long = crd.longitude;
     var lat = crd.latitude;
     console.log(long)
+    console.log(lat)
+    map.setView([lat,long ], 10);
 
-    map.setView([long, lat], 10);
+    L.marker([lat, long]).addTo(map)
+    .bindPopup('IUT')
+    .openPopup();
+
+
   }
   
   function error(err) {
