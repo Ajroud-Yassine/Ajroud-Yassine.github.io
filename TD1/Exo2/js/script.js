@@ -1,35 +1,35 @@
 // Get Current Position
 
-// let long =document.getElementById('long');
-// let lat =document.getElementById('lat');
-// let alt =document.getElementById('alt');
-// let vit =document.getElementById('vit');
-// let time =document.getElementById('time');
-// let pre =document.getElementById('pre');
+let long =document.getElementById('long');
+let lat =document.getElementById('lat');
+let alt =document.getElementById('alt');
+let vit =document.getElementById('vit');
+let time =document.getElementById('time');
+let pre =document.getElementById('pre');
 
-// var options = {
-//     enableHighAccuracy: true,
-//     timeout: 5000,
-//     maximumAge: 0
-//   };
+var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
 
-// function success(pos) {
-//     var crd = pos.coords;
-// console.log(pos);
-//     long.innerHTML = crd.longitude;
-//     lat.innerHTML = crd.latitude;
-//     pre.innerHTML = crd.accuracy;
-//     vit.innerHTML = crd.speed;
-//     alt.innerHTML = crd.altitude;
-//     const timePos = new Date(pos.timestamp)
-//     time.innerHTML = timePos;
-//   }
+function success(pos) {
+    var crd = pos.coords;
+console.log(pos);
+    long.innerHTML = crd.longitude;
+    lat.innerHTML = crd.latitude;
+    pre.innerHTML = crd.accuracy;
+    vit.innerHTML = crd.speed;
+    alt.innerHTML = crd.altitude;
+    const timePos = new Date(pos.timestamp)
+    time.innerHTML = timePos;
+  }
   
-//   function error(err) {
-//     console.warn(`ERREUR (${err.code}): ${err.message}`);
-//   }
+  function error(err) {
+    console.warn(`ERREUR (${err.code}): ${err.message}`);
+  }
   
-//   navigator.geolocation.getCurrentPosition(success, error, options);
+  navigator.geolocation.getCurrentPosition(success, error, options);
 
 //   Watch Position
 
@@ -82,10 +82,10 @@ let gamma =document.getElementById('gamma');
 
 window.addEventListener('devicemotion', (eventData) => {
 
-    x.innerHTML = Math.round(eventData.accelerationIncludingGravity.x);
-    y.innerHTML = Math.round(eventData.accelerationIncludingGravity.Y);
-    z.innerHTML = Math.round(eventData.accelerationIncludingGravity.Z);
-    alpha.innerHTML = Math.round(eventData.rotationRate.alpha) ;
-    beta.innerHTML = Math.round(eventData.rotationRate.beta); 
-    gamma.innerHTML = Math.round(eventData.rotationRate.gamma);
+    x.innerHTML = eventData.accelerationIncludingGravity.x;
+    y.innerHTML = eventData.accelerationIncludingGravity.Y;
+    z.innerHTML = eventData.accelerationIncludingGravity.Z;
+    alpha.innerHTML = eventData.rotationRate.alpha ;
+    beta.innerHTML = eventData.rotationRate.beta; 
+    gamma.innerHTML = eventData.rotationRate.gamma;
 }, false);
