@@ -10,6 +10,8 @@ var options = {
 
 function success(pos) {
 
+
+    
    // calcul distance Nice Marseille
    var R = 6371e3;
    var lat1 = 43.7101728;
@@ -89,12 +91,19 @@ function success(pos) {
         color: 'yellow'
     }).addTo(map);
 
-    segment.bindPopup("Distance Nice > Marseille = "+Math.round(distanceMetres/1000)+" mètres");
+    segment.bindPopup("Distance Nice > Marseille = "+Math.round(distanceMetres/1000)+" Km");
     dist.innerHTML = Math.round(distanceMetres/1000);
 
+    // API REST
 
-
-
+    function reqListener () {
+        L.geoJson(JSON.parse(this.response)).addTo(map);
+      }
+      var oReq = new XMLHttpRequest();
+      oReq.addEventListener("load", reqListener);
+      oReq.open("GET", "http://opendata.nicecotedazur.org/data/storage/f/2014-06-24T17%3A26%3A11.347Z/export-musees-galeries.json/docs/");
+      oReq.send();
+      console.log(oReq);
 
         
   }
@@ -109,6 +118,7 @@ function success(pos) {
   function toRadian(degree) {
     return degree*Math.PI/180;
 }
+
 
 
 
