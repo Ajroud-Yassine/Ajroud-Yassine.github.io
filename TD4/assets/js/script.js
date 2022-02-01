@@ -1,3 +1,61 @@
+// Api REST ---->   https://restcountries.com/v2/all
+
+
+function apiRestCountries()
+{
+    function reqListener () {
+        console.log(this.responseText);
+        // parse 
+        var obj = JSON.parse(this.responseText);
+        console.log(obj);
+
+
+        // Récupération des countries 
+
+        for (var countries in obj) {
+            
+            var countrie = obj[countries];
+            var nameCountrie = countrie.name;
+            var flagCountrie = countrie.flags.png;
+            var latLong = countrie.latlng;
+
+         }
+
+    }
+
+
+    var req = new XMLHttpRequest();
+    req.onload = reqListener;
+    req.open("GET","https://restcountries.com/v2/all");
+    req.send();
+}
+
+apiRestCountries();
+
+
+// recupe position lat/Long
+
+var options = {
+    enableHighAccuracy:true,
+    timeout:5000,
+    maximumAge:0
+};
+
+function success(pos)
+{
+    var crd = pos.coords;
+    var long = crd.longitude;
+    var lat = crd.latitude;
+    console.log(long,lat)
+}
+  
+function error(err) {
+    console.warn(`ERREUR (${err.code}): ${err.message}`);
+}
+  
+  navigator.geolocation.getCurrentPosition(success, error, options);
+
+
 
 // Scene
 const scene = new THREE.Scene();
