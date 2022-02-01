@@ -1,3 +1,18 @@
+// calcul cordSphere
+
+var cordSphere = 1 /Math.sqrt(1-Math.exp(Math.pow())*Math.sin(Math.pow())*1 );
+
+function latLon(lat,lon, R){
+
+    lat= -lat*Math.pi/180;
+    lon= -lon*Math.pi/180;
+    var x= R*Math.cos(lat)*Math.cos(lon);
+    var y= R*Math.cos(lat)*Math.sin(lon);
+    var z= R*Math.sin(lat);
+    console.log(x,y,z);
+}
+
+
 // Api REST ---->   https://restcountries.com/v2/all
 
 
@@ -7,7 +22,6 @@ function apiRestCountries()
         console.log(this.responseText);
         // parse 
         var obj = JSON.parse(this.responseText);
-        console.log(obj);
 
 
         // Récupération des countries 
@@ -19,6 +33,20 @@ function apiRestCountries()
             var flagCountrie = countrie.flags.png;
             var latLong = countrie.latlng;
 
+            // textureCountries
+
+            var loader =new THREE.TextureLoader();
+            var textureCountries = loader.load(flagCountrie);
+            // meshCountries
+
+            const geometryCountries = new THREE.SphereGeometry(1,24,16);
+            const materialCountires = new THREE.MeshBasicMaterial({map:textureCountries});
+            const sphereCountries = new THREE.Mesh( geometryCountries, materialCountires);
+            scene.add( sphereCountries );
+
+            // latLon(latLong[0],latLong[1],1);
+
+            //  update ---->sphere.position.set(2, 2, 2);
          }
 
     }
@@ -84,7 +112,7 @@ document.body.appendChild( renderer.domElement );
 var loader =new THREE.TextureLoader();
 var texture = loader.load("assets/textures/map.jpg");
 
-// mesh
+// meshTerre
 
 const geometry = new THREE.SphereGeometry(1,24,16);
 const material = new THREE.MeshBasicMaterial({map: texture});
@@ -92,6 +120,7 @@ const sphere = new THREE.Mesh( geometry, material);
 scene.add( sphere );
 
 camera.position.z = 3;
+
 
 // animation de la sphere
 
