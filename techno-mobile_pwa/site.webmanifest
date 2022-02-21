@@ -1,0 +1,15 @@
+{
+    "icons":[{
+        "src": "./assets/img/build.png",
+        "sizes":"192x192",
+        "type": "image/png"
+    }],
+    "name": "Building Album Blog ",
+    "short_name": "BuidBlog",
+    "theme_color": "#008E89",
+    "background_color": "#084594",
+    "display": "standalone",
+    "orientation": "portrait",
+    "scope": "/",
+    "start_url": "index.html"
+  }
