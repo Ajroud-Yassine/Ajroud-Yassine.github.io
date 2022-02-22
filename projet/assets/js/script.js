@@ -25,8 +25,7 @@ let weather = {
         )
             .then((response) => {
                 if (!response.ok) {
-                    alert("No weather found.");
-                    throw new Error("No weather found.");
+                    alert("pas le bon pays ou ville");
                 }
                 return response.json();
             })
@@ -54,7 +53,7 @@ let weather = {
 
         // 3D
 
-        if (description == "overcast clouds") {
+        if (description == "clear sky") {
             const scene = new THREE.Scene();
             const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10);
 
@@ -79,7 +78,7 @@ let weather = {
             // meshTerre
 
             const geometry = new THREE.SphereGeometry(1, 24, 16);
-            const material = new THREE.MeshBasicMaterial("#FFFA4D");
+            const material = new THREE.MeshBasicMaterial({color:"#FFFA4D"});
             const sphere = new THREE.Mesh(geometry, material);
             scene.add(sphere);
 
@@ -99,8 +98,6 @@ let weather = {
 
             render();
         }
-
-
 
         // Set Map
         map.setView([lat, lon], 5);
@@ -136,7 +133,7 @@ document
         }
     });
 
-weather.fetchWeather("France");
+weather.fetchWeather("Paris");
 
 
 
