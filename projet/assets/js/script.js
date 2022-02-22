@@ -54,6 +54,13 @@ let weather = {
         // 3D
 
         if (description == "clear sky") {
+
+            if(description !="clear sky"){
+                let removeCanvas =document.querySelector("canvas");
+                removeCanvas.remove();
+            }
+            
+
             const scene = new THREE.Scene();
             const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10);
 
@@ -97,6 +104,60 @@ let weather = {
             };
 
             render();
+        }else{
+
+            if(description !="clear sky"){
+                let removeCanvas =document.querySelector("canvas");
+                removeCanvas.remove();
+            }
+            
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10);
+
+            const renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth / 4, window.innerHeight / 4);
+            document.getElementById('3d').appendChild(renderer.domElement);
+
+            // Light & AmbientLight
+
+            // AmbientLight
+
+            const AmbientLight = new THREE.AmbientLight("#041C32");
+            scene.add(AmbientLight);
+
+            //Light
+
+            const light = new THREE.PointLight("#FFCB74", 0.6, 70);
+            light.position.set(10, 10, 10);
+            scene.add(light);
+
+
+            // meshTerre
+
+            const geometry = new THREE.SphereGeometry(1, 24, 16);
+            const material = new THREE.MeshBasicMaterial({color:"#085E7D"});
+            const sphere = new THREE.Mesh(geometry, material);
+            scene.add(sphere);
+
+            camera.position.z = 2;
+
+
+            // animation de la sphere
+
+            var render = function () {
+                requestAnimationFrame(render);
+                sphere.rotation.x += 0.001;
+                sphere.rotation.y += 0.001;
+
+                // affichage de la scene et cam
+                renderer.render(scene, camera);
+            };
+
+            render();
+
+            
+            
         }
 
         // Set Map
