@@ -1,6 +1,6 @@
 const cacheBuild='Build-cache-1.0';
 
-let urlsToCache = ['index.html','/assets/js/script.js'];
+let urlsToCache = ['index.html','./assets/js/script.js'];
 
 self.addEventListener('install',function(event)
 {

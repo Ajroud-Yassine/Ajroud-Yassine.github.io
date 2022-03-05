@@ -3,8 +3,9 @@
 
 if(navigator.serviceWorker)
 {
+    
     navigator.serviceWorker.register('service-worker.js');
 
 }
 
-navigator.serviceWorker.unregister();
+navigator.serviceWorker.unregister;
