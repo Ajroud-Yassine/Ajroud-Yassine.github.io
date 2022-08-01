@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+
+
+{% block title %}
+    <h2>API documentation</h2>
+{% endblock %}
+
+{% block content %}
+    <a href="{% url 'home' %}"><button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">home</button></a>
+    <p>If you checked "Your Strategy" on the config page, please use this structure of json:</p>
+    <p>{"key":"YOUR_KEY","action":"sell","ticker":"{{ticker}}","quantite":15,"sentiment":1}</p>
+    <p>In your tradingview webhook section, please note that quantity is in percent and sentiment on 1 is true and 0 is</p>
+{% endblock %}
+

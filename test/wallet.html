@@ -1,0 +1,145 @@
+{% extends 'index.html' %}
+
+
+{% block title %}
+    {% if user.is_authenticated %}
+        <h2>{{user.username}}, this is your Wallet !</h2>
+    {% else %}
+        <h2>You are not authenticated.</h2>
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <p>Chart.js is a third party plugin that is used to generate the charts in this theme. Please visit the official Chart.js documentation.</p><br>
+        <ul>
+
+            {% if keys %}
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+                <script>
+                    // Retrieve the JSON object from views.py and make it a Javascript Object
+                    var wallet = {{ keys | safe }};
+                    var myjson = JSON.parse(wallet.tansaction);
+
+                    // Print a single value of the object
+                    document.write("<hr>print first object's asset of received JSON<br>");
+                    document.write(myjson[0]['asset']);
+
+                    // Printing all the values from the object
+                    document.write("<hr>printAssets function <br>");
+                    function printAssets(obj) {
+                        var myString = "";
+                        for(var k in obj) {
+                            myString += "\""+obj[k]['free']+"\"";
+                            myString += ", "
+                            /*if(obj[k] instanceof Object) {
+                                printValues(obj[k]['asset']);
+                            } else {
+                                document.write(obj[k]['asset']);
+                            };*/
+                        }
+                        myString = myString.substring(0, myString.length - 2);
+                        return myString;
+                    };
+                    document.write(myjson[0]);
+                    document.write(printAssets(myjson));
+                    document.write("<hr>");
+                </script>
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- Pie Chart -->
+                    <div class="card shadow mb-4">
+                        <!-- Card Header - Dropdown -->
+                        <div
+                            class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">My wallet by coins</h6>
+                            <div class="dropdown no-arrow">
+                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                    aria-labelledby="dropdownMenuLink">
+                                    <div class="dropdown-header">Dropdown Header:</div>
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                                <canvas id="myWalletPie"></canvas>
+                            <div class="mt-4 text-center small">
+                                <span class="mr-2">
+                                    <i class="fas fa-circle text-primary"></i> Direct
+                                </span>
+                                <span class="mr-2">
+                                    <i class="fas fa-circle text-success"></i> Social
+                                </span>
+                                <span class="mr-2">
+                                    <i class="fas fa-circle text-info"></i> Referral
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VUE.JS stuff
+
+                <div id="app">
+                    [[message]]
+                    <br>1[[wallet]]
+                    <br>2[[wallet.tansaction]]
+
+                    <br><br>FOR1<br>
+                    <li v-for="data in myObj">
+                            <a v-bind:href="data">[[data]]</a>
+                    </li>
+                    <button @click="myFunction()">Click Me</button>
+                    
+                        //Buttons to display stuff on console + change letter order for [[message]] aka Hello vue!
+                        <button v-on:click="greet(data)">TestButton</button>
+                        <button v-on:click="reverseMessage">Reverse Message</button>
+                    
+                </div>
+
+
+                <script>
+                    var app = new Vue({
+                        delimiters: ['[[', ']]'],
+                        el: '#app',
+                        data: {
+                            message: 'Hello Vue!',
+                            myJson: wallet,
+                            myWallet: JSON.parse(wallet.tansaction),
+                            myObj:{},
+                            wallet: wallet,
+                        },
+                        methods: {
+                            myFunction: function () {	
+                                this.myObj = JSON.parse(this.myJson.tansaction);
+                            }
+                            /*
+                            greet: function(name) {
+                                console.log('Hello from ' + name + '!')
+                            },
+                            reverseMessage: function () {
+                                this.message = this.message.split('').reverse().join('')
+                            }
+                            */
+                        }
+                    });
+                </script>-->
+            {% else %}
+                <p>No items available.</p>
+            {% endif %}
+           
+        </ul>
+    {% else %}
+        please<a href="{% url 'login_url' %}"> &nbsp;Login&nbsp; </a> or&nbsp; <a href="{% url 'register_url' %}">Register</a>.
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,125 @@
+<ul class="position-static navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    {% if user.is_authenticated %}
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/accounts/dashboard/">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">TradingBot Services</sup></div>
+        </a>
+    {% else %}
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/accounts/login/">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">TradingBot Services</sup></div>
+        </a>
+    {% endif %}
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Trading bots
+    </div>
+
+    <!-- Our bots Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOurbots"
+            aria-expanded="true" aria-controls="collapseOurbots">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Our bots</span>
+        </a>
+        <div id="collapseOurbots" class="collapse" aria-labelledby="headingOurbots"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Vision</h6>
+                <a class="collapse-item" href="/accounts/bots/lt/">Long-term</a>
+                <a class="collapse-item" href="/accounts/bots/mt/">Mid-term</a>
+                <a class="collapse-item" href="/accounts/bots/st/">Short-term</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Make your own bot Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOwnbot"
+            aria-expanded="true" aria-controls="collapseOwnbot">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Make your own bot</span>
+        </a>
+        <!--<div id="collapseOwnbot" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Custom Utilities:</h6>
+                <a class="collapse-item" href="utilities-color.html">Colors</a>
+                <a class="collapse-item" href="utilities-border.html">Borders</a>
+                <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                <a class="collapse-item" href="utilities-other.html">Other</a>
+            </div>
+        </div>-->
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        My data
+    </div>
+
+    <!-- Nav Item - My data Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link" href="/accounts/dashboard/">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseWallet"
+            aria-expanded="true" aria-controls="collapseWallet">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Wallet</span>
+        </a>
+        <div id="collapseWallet" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Custom Components:</h6>
+                <a class="collapse-item" href="/accounts/wallet/">My Wallet</a>
+                <div class="collapse-divider"></div>
+                <h6 class="collapse-header">Other Pages:</h6>
+                <a class="collapse-item" href="cards.html">Cards</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseApiConfig"
+            aria-expanded="true" aria-controls="collapseApiConfig">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>API configuration</span>
+        </a>
+        <div id="collapseApiConfig" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="/accounts/documentation/">Documentation</a>
+                <a class="collapse-item" href="/accounts/configuration/">API key Configuration</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+    <!-- Sidebar Message -->
+    <div class="sidebar-card d-none d-lg-flex">
+        <p class="text-center mb-2"><strong>TradingBot Services Pro</strong> is packed with premium features, components, and more!</p>
+        <a class="btn btn-success btn-sm" href="/accounts/upgrade/">Upgrade to Pro!</a>
+    </div>
+
+</ul>

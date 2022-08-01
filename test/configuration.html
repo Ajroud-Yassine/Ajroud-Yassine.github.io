@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+
+
+{% block title %}
+    {% if user.is_authenticated %}
+        <h2>{{user.username}}, Please configure your Binance API</h2>
+    {% else %}
+        <h2>You are not authenticated.</h2>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h2>Please add here your binance keys</h2>
+        <p>APIkey : {{keys.API_key}}</p>
+        <p>tradingViewKey : {{keys.tradingViewKey}}</p>
+        <p>id {{user.id}}</p>
+        <p> porte feuille: beaucoup trop </p>
+        {% if form.subject.errors %}
+            <ol>
+            {% for error in form.subject.errors %}
+                <li><strong>{{ error|escape }}</strong></li>
+            {% endfor %}
+            </ol>
+        {% endif %}    
+        <form method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Submit">
+        </form>
+        <a href="{% url 'home' %}"><button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">home</button></a>
+    {% else %}
+        please<a href="{% url 'login_url' %}"> &nbsp;Login&nbsp; </a> or&nbsp; <a href="{% url 'register_url' %}">Register</a>.
+    {% endif %}
+{% endblock %}   
